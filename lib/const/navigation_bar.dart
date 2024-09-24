@@ -50,7 +50,7 @@ class _NavBarState extends State<NavBar> {
         type: BottomNavigationBarType.fixed, // Make sure the style applies correctly on iOS
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
+            icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gym_manager/features/home/widgets/title_text.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -19,6 +20,25 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  List<Map<String, dynamic>> items = [
+    {
+      'icon': Icons.currency_rupee_rounded, // IconData type
+      'title': 'Total Earnings',
+    },
+    {
+      'icon': Icons.group, // String type (for SVG path)
+      'title': 'Total Members',
+    },
+    {
+      'icon': Icons.person_off_rounded,
+      'title': 'Inactive Members',
+    },
+    {
+      'icon': Icons.person_rounded,
+      'title': 'Active Members',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +56,8 @@ class _HomeViewState extends State<HomeView> {
             ),
             10.widthBox,
             const TitleText(
-              title: "Bishu Bhai",
-              subTitle: "BHAIJAN GYM - Manager",
+              title: "Jhon Doe",
+              subTitle: "XYZ GYM - Manager",
             ),
           ],
         ),
@@ -49,18 +69,10 @@ class _HomeViewState extends State<HomeView> {
                   onPressed: () {},
                   icon: const Icon(
                     Icons.notifications,
+                    color: Colors.black,
                     size: 25,
                   ))).pOnly(right: 20),
         ],
-        // flexibleSpace: Container(
-        //   decoration: const BoxDecoration(
-        //       gradient:
-        //           LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-        //     Colors.blueGrey,
-        //     Colors.black,
-        //     Colors.black,
-        //   ])),
-        // ),
         elevation: 0,
       ),
       body: Stack(
@@ -73,18 +85,6 @@ class _HomeViewState extends State<HomeView> {
                 fit: BoxFit.cover,
               ),
             ),
-            // child: Container(
-            //   decoration: BoxDecoration(
-            //     gradient: LinearGradient(
-            //       begin: Alignment.bottomCenter,
-            //       end: Alignment.topCenter,
-            //       colors: [
-            //         Colors.black.withOpacity(0.7),
-            //         Colors.transparent,
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -115,18 +115,9 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 itemCount: 4,
                 itemBuilder: (context, index) {
-                  return Card(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 5,
-                    child: Center(
-                      child: Text(
-                        'Card ${index + 1}',
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                  return HomeCards(
+                    title: items[index]['title']!,
+                    icon: items[index]['icon']!,
                   );
                 },
               ).p12(),
@@ -134,6 +125,79 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class HomeCards extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  const HomeCards({
+    super.key,
+    required this.title,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.amber.withOpacity(0.6),
+      // color: Colors.amber,
+      // color: Colors.white,
+      surfaceTintColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      elevation: 5,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.6),
+                        offset: const Offset(0, 4),
+                        blurRadius: 10,
+                      ),
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.6),
+                        offset: const Offset(4, 0),
+                        blurRadius: 10,
+                      ),
+                    ],
+                    border: Border.all(
+                      width: 2,
+                      color: Colors.black,
+                    ),
+                    shape: BoxShape.circle),
+                child: Icon(icon),
+              ).h(45).w(45),
+              Text(title,
+                  overflow: TextOverflow.clip,
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                    fontFamily: GoogleFonts.poppins().fontFamily,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    // color: Colors.amber,
+                  )),
+            ],
+          ),
+          Text('00',
+              overflow: TextOverflow.clip,
+              style: TextStyle(
+                fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
+                fontFamily: GoogleFonts.poppins().fontFamily,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                // color: Colors.amber,
+              )),
+        ],
+      ).p12(),
     );
   }
 }
