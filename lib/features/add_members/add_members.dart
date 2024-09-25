@@ -31,6 +31,7 @@ class _AddMembersViewState extends State<AddMembersView> {
   final TextEditingController _dateOfJoiningController = TextEditingController();
   final TextEditingController _emergencyPhoneController = TextEditingController();
   final TextEditingController _lastPaymentDateController = TextEditingController();
+  final TextEditingController _PaymentController = TextEditingController();
 
   String? _selectedMembershipTenure;
   DateTime? _lastPaymentDate;
@@ -49,16 +50,15 @@ class _AddMembersViewState extends State<AddMembersView> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Form Submitted'),
-            content: const Text('Member added successfully!'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
+            backgroundColor: Colors.grey[800],
+            title: Text(
+              'Member added successfully ✨💐',
+              style: TextStyle(
+                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                  fontFamily: GoogleFonts.poppins().fontFamily,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white),
+            ),
           );
         },
       );
@@ -95,6 +95,7 @@ class _AddMembersViewState extends State<AddMembersView> {
               fontWeight: FontWeight.w500,
               color: Colors.white),
         ),
+        centerTitle: true,
       ),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.black,
@@ -123,207 +124,295 @@ class _AddMembersViewState extends State<AddMembersView> {
               child: ListView(
                 children: [
                   // Member Name Field with Prefix Icon
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        labelText: 'Member Name',
-                        prefixIcon: const Icon(Icons.person, color: Colors.white),
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Member Name',
+                      prefixIcon: const Icon(Icons.person, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      style: const TextStyle(color: Colors.white),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter the member name';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
+                    style: const TextStyle(color: Colors.white),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the member name';
+                      }
+                      return null;
+                    },
+                  ).pOnly(bottom: 16),
 
                   // Member Age Field with Prefix Icon
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      controller: _ageController,
-                      decoration: InputDecoration(
-                        labelText: 'Member Age',
-                        prefixIcon: const Icon(Icons.cake, color: Colors.white),
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  TextFormField(
+                    controller: _ageController,
+                    decoration: InputDecoration(
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Member Age',
+                      prefixIcon: const Icon(Icons.cake, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.number,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter the member age';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
+                    style: const TextStyle(color: Colors.white),
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the member age';
+                      }
+                      return null;
+                    },
+                  ).pOnly(bottom: 16),
 
                   // Member Weight Field with Prefix Icon
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      controller: _weightController,
-                      decoration: InputDecoration(
-                        labelText: 'Member Weight',
-                        prefixIcon: const Icon(Icons.fitness_center, color: Colors.white),
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  TextFormField(
+                    controller: _weightController,
+                    decoration: InputDecoration(
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Member Weight',
+                      prefixIcon: const Icon(Icons.fitness_center, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.number,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter the member weight';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
+                    style: const TextStyle(color: Colors.white),
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the member weight';
+                      }
+                      return null;
+                    },
+                  ).pOnly(bottom: 16),
 
                   // Phone Number Field with Prefix Icon
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      controller: _phoneController,
-                      decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        prefixIcon: const Icon(Icons.phone, color: Colors.white),
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  TextFormField(
+                    controller: _phoneController,
+                    decoration: InputDecoration(
+                      prefixText: "+91 ",
+                      prefixStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelLarge?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Phone Number',
+                      prefixIcon: const Icon(Icons.phone, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.phone,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter the phone number';
-                        }
-                        if (value.length != 10) {
-                          return 'Phone number must be 10 digits';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
-
+                    style: const TextStyle(color: Colors.white),
+                    keyboardType: TextInputType.phone,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the phone number';
+                      }
+                      if (value.length != 10) {
+                        return 'Phone number must be 10 digits';
+                      }
+                      return null;
+                    },
+                  ).pOnly(bottom: 16),
+                  // Emergency Phone Number Field with Prefix Icon
+                  TextFormField(
+                    controller: _emergencyPhoneController,
+                    decoration: InputDecoration(
+                      prefixText: "+91 ",
+                      prefixStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelLarge?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Emergency Phone Number (Optional)',
+                      prefixIcon: const Icon(Icons.phone_android, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                    keyboardType: TextInputType.phone,
+                  ).pOnly(bottom: 16),
                   // Membership Tenure Dropdown Field
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        labelText: 'Membership Tenure',
-                        prefixIcon: const Icon(Icons.timer, color: Colors.white),
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Membership Tenure',
+                      prefixIcon: const Icon(Icons.timer, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      dropdownColor: Colors.grey[800],
-                      value: _selectedMembershipTenure,
-                      items: ['3 months', '6 months', '9 months', '12 months'].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value, style: const TextStyle(color: Colors.white)),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _selectedMembershipTenure = newValue;
-                        });
-                      },
-                      validator: (value) {
-                        if (value == null) {
-                          return 'Please select a membership tenure';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
+                    dropdownColor: Colors.grey[800],
+                    value: _selectedMembershipTenure,
+                    items: ['3 months', '6 months', '9 months', '12 months'].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value, style: const TextStyle(color: Colors.white)),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedMembershipTenure = newValue;
+                      });
+                    },
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Please select a membership tenure';
+                      }
+                      return null;
+                    },
+                  ).pOnly(bottom: 16),
 
                   // Date of Joining (Non-Editable)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      controller: _dateOfJoiningController,
-                      decoration: InputDecoration(
-                        labelText: 'Date of Joining',
-                        prefixIcon: const Icon(Icons.calendar_today, color: Colors.white),
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  TextFormField(
+                    controller: _dateOfJoiningController,
+                    decoration: InputDecoration(
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Date of Joining',
+                      prefixIcon: const Icon(Icons.calendar_today, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      style: const TextStyle(color: Colors.white),
-                      readOnly: true, // Make the field non-editable
                     ),
-                  ),
-
-                  // Emergency Phone Number Field with Prefix Icon
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      controller: _emergencyPhoneController,
-                      decoration: InputDecoration(
-                        labelText: 'Emergency Phone Number (Optional)',
-                        prefixIcon: const Icon(Icons.phone_android, color: Colors.white),
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                    style: const TextStyle(color: Colors.white),
+                    readOnly: true, // Make the field non-editable
+                  ).pOnly(bottom: 16),
+                  //Members Payment Amount
+                  TextFormField(
+                    controller: _PaymentController,
+                    decoration: InputDecoration(
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Payment Amount',
+                      prefixIcon: const Icon(Icons.currency_rupee_rounded, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.phone,
                     ),
-                  ),
-
+                    style: const TextStyle(color: Colors.white),
+                    keyboardType: TextInputType.phone,
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Please add amount';
+                      }
+                      return null;
+                    },
+                  ).pOnly(bottom: 16),
                   // Last Payment Date Picker with Prefix Icon
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      controller: _lastPaymentDateController,
-                      decoration: InputDecoration(
-                        labelText: 'Last Payment Date',
-                        prefixIcon: const Icon(Icons.payment, color: Colors.white),
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  TextFormField(
+                    controller: _lastPaymentDateController,
+                    decoration: InputDecoration(
+                      errorStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.amber),
+                      labelText: 'Last Payment Date',
+                      prefixIcon: const Icon(Icons.payment, color: Colors.white),
+                      labelStyle: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      style: const TextStyle(color: Colors.white),
-                      readOnly: true, // Prevent manual input
-                      onTap: _pickLastPaymentDate, // Trigger the date picker on tap
                     ),
-                  ),
+                    style: const TextStyle(color: Colors.white),
+                    readOnly: true, // Prevent manual input
+                    onTap: _pickLastPaymentDate, // Trigger the date picker on tap
+                  ).pOnly(bottom: 16),
 
                   // Submit Button
                   ElevatedButton(

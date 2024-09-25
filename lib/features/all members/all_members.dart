@@ -42,6 +42,7 @@ class _AllMembersViewState extends State<AllMembersView> {
       // extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        centerTitle: true,
         title: Text(
           'All Members',
           style: TextStyle(
@@ -62,7 +63,7 @@ class _AllMembersViewState extends State<AllMembersView> {
           ),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+              filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
               child: Container(
                 color: Colors.black.withOpacity(0.5), // Blurry overlay
               ),
@@ -89,7 +90,7 @@ class _AllMembersViewState extends State<AllMembersView> {
                       style: TextStyle(
                           fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
                           fontFamily: GoogleFonts.poppins().fontFamily,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w500,
                           color: Colors.white),
                     ),
                     children: [
@@ -113,8 +114,8 @@ class _AllMembersViewState extends State<AllMembersView> {
                         _isExpanded[index] = expanded;
                       });
                     },
-                  ).p8(),
-                );
+                  ),
+                ).pOnly(bottom: 6);
               },
             ),
           ),
@@ -152,7 +153,7 @@ class _AllMembersViewState extends State<AllMembersView> {
           Text(
             value,
             style: TextStyle(
-                fontSize: Theme.of(context).textTheme.labelSmall?.fontSize,
+                fontSize: Theme.of(context).textTheme.labelLarge?.fontSize,
                 fontFamily: GoogleFonts.poppins().fontFamily,
                 fontWeight: FontWeight.w500,
                 color: Colors.white),
