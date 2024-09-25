@@ -333,6 +333,8 @@ class _AddMembersViewState extends State<AddMembersView> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      elevation: 10,
+                      shadowColor: Colors.amber,
                     ),
                     child: Text(
                       'Add Member',
